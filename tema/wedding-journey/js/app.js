@@ -122,6 +122,10 @@
   });
   $('#home').setAttribute('tabindex', '-1');
 
+  /* ---------------- Aset kapal & bendera ---------------- */
+  if (D.art.ship) $$('.js-ship').forEach(function (im) { im.src = D.art.ship; });
+  if (D.art.flag) $$('.js-flag').forEach(function (im) { im.src = D.art.flag; });
+
   /* ---------------- Hero: tanggal & countdown ---------------- */
   var cdEl = $('#countdown');
   var hasWeddingDate = U.isValidDate(D.wedding.date);

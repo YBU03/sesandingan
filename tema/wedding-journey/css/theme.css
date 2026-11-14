@@ -195,7 +195,7 @@ section[id] { scroll-margin-top: 8px; }
 .hero {
   position: relative; min-height: 100vh; min-height: 100svh; overflow: hidden; outline: none;
   display: flex; flex-direction: column; justify-content: center;
-  padding: 80px 0 170px; text-align: center; color: #fff;
+  padding: 80px 0 310px; text-align: center; color: #fff;
   background: linear-gradient(180deg, #2c5fa0 0%, #6d73b3 30%, #e48f8f 58%, #f6b265 74%, #f7cd7e 82%);
 }
 .hero-sky { position: absolute; inset: 0; pointer-events: none; }
@@ -210,8 +210,19 @@ section[id] { scroll-margin-top: 8px; }
 @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
 .hero-content { position: relative; z-index: 2; padding: 0 22px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.flag { width: 92px; animation: flagWave 3.2s ease-in-out infinite; transform-origin: 0 50%; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .35)); }
-@keyframes flagWave { 0%, 100% { transform: skewY(0); } 50% { transform: skewY(-4deg) scaleX(.97); } }
+.flag { position: relative; display: flex; align-items: flex-start; padding-left: 6px; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .35)); }
+.flag-pole { position: absolute; left: 0; top: -6px; width: 6px; height: 128px; border-radius: 3px; background: linear-gradient(90deg, #8a5a30, #c58f55 50%, #6b4120); }
+.flag-pole::before { content: ''; position: absolute; top: -8px; left: -3px; width: 12px; height: 12px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ffe08a, #b8860b); }
+.flag-cloth {
+  position: relative; display: grid; place-items: center; width: 128px; height: 90px; overflow: hidden;
+  background: #141418; border-radius: 2px 10px 6px 2px;
+  transform-origin: 0 50%; animation: flagWave 2.6s ease-in-out infinite;
+  clip-path: polygon(0 0, 100% 3%, 97% 30%, 100% 55%, 97% 80%, 100% 100%, 0 100%);
+}
+.flag-cloth::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.12) 30%, rgba(0,0,0,.25) 55%, rgba(255,255,255,.1) 80%, rgba(0,0,0,.2) 100%); background-size: 200% 100%; animation: flagShade 2.6s linear infinite; }
+.flag-cloth img { width: 72%; height: auto; }
+@keyframes flagWave { 0%, 100% { transform: skewY(0) scaleX(1); } 50% { transform: skewY(-5deg) scaleX(.95); } }
+@keyframes flagShade { from { background-position: 0 0; } to { background-position: -200% 0; } }
 .hero-kicker { font: 400 22px/1 var(--font-pirate); letter-spacing: .1em; color: #fff3d6; text-shadow: 0 2px 6px rgba(0, 0, 0, .35); }
 .hero-names { font: 700 clamp(38px, 11vw, 64px)/1.05 var(--font-name); text-shadow: 0 4px 18px rgba(60, 20, 40, .45); display: flex; flex-direction: column; align-items: center; }
 .hero-date { font-weight: 700; font-size: 16px; letter-spacing: .06em; padding: 6px 18px; border-radius: 999px; background: rgba(11, 35, 64, .35); }
@@ -224,9 +235,13 @@ section[id] { scroll-margin-top: 8px; }
 .cd-empty { grid-column: 1 / -1; font-size: 14px; padding: 10px 14px; border-radius: 10px; background: rgba(11, 35, 64, .35); color: #fff3d6; }
 .hero-invite { max-width: 380px; font-size: 14.5px; color: #3b1f12; font-weight: 600; margin-top: 8px; }
 
-.hero-sea { position: absolute; left: 0; right: 0; bottom: 0; height: 170px; pointer-events: none; }
-.ship { position: absolute; width: 110px; left: 50%; bottom: 60px; margin-left: -55px; z-index: 1; animation: sail 6s ease-in-out infinite; }
-@keyframes sail { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-6px) rotate(2deg); } }
+.hero-sea { position: absolute; left: 0; right: 0; bottom: 0; height: 310px; pointer-events: none; }
+.ship { position: absolute; left: 50%; bottom: 58px; width: 210px; margin-left: -105px; z-index: 1; animation: driftShip 14s ease-in-out infinite; }
+.ship img { display: block; width: 100%; height: auto; transform-origin: 50% 85%; animation: sail 4.2s ease-in-out infinite; filter: drop-shadow(0 10px 10px rgba(11, 35, 64, .35)); }
+.foam { position: absolute; left: 6%; right: 10%; bottom: 2%; height: 16%; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(255,255,255,.95) 0%, rgba(255,255,255,.6) 45%, rgba(255,255,255,0) 72%); animation: foam 2.1s ease-in-out infinite; }
+@keyframes sail { 0%, 100% { transform: translateY(0) rotate(-3deg); } 25% { transform: translateY(-7px) rotate(0deg); } 50% { transform: translateY(-2px) rotate(3deg); } 75% { transform: translateY(-8px) rotate(0deg); } }
+@keyframes driftShip { 0%, 100% { transform: translateX(-14px); } 50% { transform: translateX(14px); } }
+@keyframes foam { 0%, 100% { transform: scaleX(1); opacity: .9; } 50% { transform: scaleX(1.12); opacity: .6; } }
 .wave { position: absolute; left: 0; width: 200%; height: 100px; }
 .wave.w1 { bottom: 26px; fill: #2f6fae; animation: waveMove 14s linear infinite; z-index: 2; }
 .wave.w2 { bottom: -10px; fill: var(--ocean); animation: waveMove 9s linear infinite reverse; z-index: 3; }
@@ -450,7 +465,8 @@ section[id] { scroll-margin-top: 8px; }
 .closing-card { padding: 34px 24px 28px; }
 .closing-title { font: 400 44px/1 var(--font-pirate); color: var(--wood-dark); margin-bottom: 14px; }
 .closing-card > p:not(.closing-names):not(.closing-sign) { font-size: 15.5px; line-height: 1.7; }
-.closing-emblem { width: 64px; margin: 18px auto 10px; }
+.closing-emblem { width: 72px; margin: 18px auto 10px; }
+.closing-emblem img { display: block; width: 100%; height: auto; }
 .closing-names { font: 700 26px/1.25 var(--font-name); }
 .closing-sign { margin-top: 6px; font-style: italic; color: var(--ink-soft); font-size: 14.5px; }
 .credit { font-size: 13px; color: #d8cbb0; }
@@ -503,8 +519,9 @@ section[id] { scroll-margin-top: 8px; }
   #storyMount, .story-quote { max-width: 640px; margin-left: auto; margin-right: auto; }
   .story-quote { margin-bottom: 36px; }
   .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-  .hero-sea { height: 200px; }
-  .ship { width: 140px; margin-left: -70px; }
+  .hero { padding-bottom: 420px; }
+  .hero-sea { height: 420px; }
+  .ship { width: 290px; margin-left: -145px; bottom: 66px; }
   .lb-prev { left: 24px; }
   .lb-next { right: 24px; }
 }

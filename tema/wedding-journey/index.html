@@ -63,7 +63,8 @@
       </div>
       <div class="hero-content">
         <div class="flag reveal" aria-hidden="true">
-          <svg viewBox="0 0 120 90"><use href="#emblem"/></svg>
+          <span class="flag-pole"></span>
+          <span class="flag-cloth"><img class="js-flag" src="assets/jolly-roger.webp" alt="" width="480" height="459"></span>
         </div>
         <p class="hero-kicker reveal">We Are Getting Married</p>
         <h2 class="hero-names reveal">
@@ -76,7 +77,10 @@
         <p class="hero-invite reveal" data-bind="texts.invitation"></p>
       </div>
       <div class="hero-sea" aria-hidden="true">
-        <svg class="ship" viewBox="0 0 120 100"><use href="#ship"/></svg>
+        <div class="ship">
+          <img class="js-ship" src="assets/going-merry.webp" alt="" width="562" height="647">
+          <span class="foam"></span>
+        </div>
         <svg class="wave w1" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 60 Q90 20 180 60 T360 60 T540 60 T720 60 T900 60 T1080 60 T1260 60 T1440 60 V120 H0Z"/></svg>
         <svg class="wave w2" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 70 Q120 35 240 70 T480 70 T720 70 T960 70 T1200 70 T1440 70 V120 H0Z"/></svg>
       </div>
@@ -147,7 +151,7 @@
         <div class="parchment closing-card reveal">
           <h2 class="closing-title">Terima Kasih</h2>
           <p data-bind="texts.closing"></p>
-          <div class="closing-emblem" id="closingMascot" aria-hidden="true"><svg viewBox="0 0 120 90"><use href="#emblem"/></svg></div>
+          <div class="closing-emblem" id="closingMascot" aria-hidden="true"><img class="js-flag" src="assets/jolly-roger.webp" alt="" width="480" height="459" loading="lazy"></div>
           <p class="closing-names"><span data-bind="groom.nickname"></span> &amp; <span data-bind="bride.nickname"></span></p>
           <p class="closing-sign" data-bind="texts.closingSignature"></p>
         </div>
@@ -211,28 +215,7 @@
       <symbol id="i-instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></g></symbol>
       <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></g></symbol>
 
-      <!-- Emblem kru orisinal: hati + jangkar bersilang -->
-      <symbol id="emblem" viewBox="0 0 120 90">
-        <rect x="4" y="6" width="112" height="78" rx="4" fill="#15161c"/>
-        <path d="M4 84q14-6 28 0t28 0 28 0 28 0V84" fill="#15161c"/>
-        <g stroke="#f4ead6" stroke-width="4" stroke-linecap="round" fill="none">
-          <path d="M30 70L90 22M90 70L30 22"/>
-        </g>
-        <g fill="#f4ead6"><circle cx="30" cy="22" r="5"/><circle cx="90" cy="22" r="5"/><circle cx="30" cy="70" r="5"/><circle cx="90" cy="70" r="5"/></g>
-        <path d="M60 66s-17-10-17-22c0-6 4-10 9-10 4 0 6 2 8 5 2-3 4-5 8-5 5 0 9 4 9 10 0 12-17 22-17 22z" fill="#e8574d" stroke="#f4ead6" stroke-width="3"/>
-      </symbol>
 
-      <!-- Kapal siluet orisinal -->
-      <symbol id="ship" viewBox="0 0 120 100">
-        <path d="M58 6v62" stroke="#3b2414" stroke-width="3"/>
-        <path d="M58 10q30 10 34 44H58z" fill="#fff6e4" stroke="#c9b48c" stroke-width="1.5"/>
-        <path d="M56 18q-22 10-26 36h26z" fill="#fbecd0" stroke="#c9b48c" stroke-width="1.5"/>
-        <path d="M58 4l16 5-16 5z" fill="#e8574d"/>
-        <path d="M66 26q6 4 0 10-6-6 0-10z" fill="#e8574d" opacity=".8"/>
-        <path d="M10 64h100l-12 22H24z" fill="#7a4a26"/>
-        <path d="M10 64h100l-3 6H13z" fill="#a8693a"/>
-        <g fill="#3b2414"><circle cx="38" cy="75" r="2.2"/><circle cx="58" cy="75" r="2.2"/><circle cx="78" cy="75" r="2.2"/></g>
-      </symbol>
 
       <!-- Log Pose / kompas orisinal -->
       <symbol id="logpose" viewBox="0 0 160 160">

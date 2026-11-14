@@ -162,6 +162,8 @@ window.invitationData = {
    * (misalnya versi karakter orisinal untuk penjualan komersial).
    */
   art: {
+    ship: 'assets/going-merry.webp',   // kapal di hero (beranimasi)
+    flag: 'assets/jolly-roger.webp',   // logo pada bendera hero & penutup
     wanted: {
       top: 'assets/wanted-top.webp',       // "WANTED" + bingkai foto + "FOREVER & ALWAYS"
       band: 'assets/wanted-band.webp',     // bagian tengah, memanjang mengikuti isi
