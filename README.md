@@ -77,6 +77,12 @@ Nilai kosong akan tampil sebagai placeholder sopan. Tidak ada data karangan yang
   - Moderasi: server cukup mengembalikan ucapan yang sudah disetujui, dan boleh membalas `{ status: 'pending' }` saat menerima ucapan.
   - Opsi backend yang cocok: Google Apps Script + Google Sheets, Supabase, atau server sendiri.
 
+### Poster Wanted & maskot
+
+- Poster Wanted memakai 3 potongan gambar di `assets/` (`wanted-top`, `wanted-band`, `wanted-bottom`). Bagian tengah memanjang otomatis mengikuti panjang nama dan data orang tua. Foto mempelai otomatis masuk ke bingkai foto.
+- Maskot (4 pose) ada di `assets/chopper/`. Atur atau sembunyikan lewat `mascot` di `data.js` (`enabled: false` untuk mematikan semua maskot).
+- Untuk mengganti gambar poster atau maskot (misalnya versi orisinal untuk dijual), cukup ubah path di `art` dan `mascot` pada `data.js`. Jika bingkai foto di gambar baru berbeda posisinya, sesuaikan `.wanted-photo` di `css/theme.css`.
+
 ### Musik
 
 Jika `music.src` kosong, tombol musik memutar **suara ombak** yang dibuat langsung oleh browser (Web Audio). Tidak ada file dan bebas hak cipta. Musik tidak pernah diputar sebelum tamu menekan **Buka Undangan**.
@@ -105,4 +111,4 @@ Jika `music.src` kosong, tombol musik memutar **suara ombak** yang dibuat langsu
 
 ## Catatan hak cipta
 
-Gambar hero kapal (Going Merry) dan bendera di dalamnya adalah aset referensi dari pemilik proyek yang terinspirasi One Piece (© Eiichiro Oda / Shueisha / Toei Animation). Untuk penjualan komersial, **ganti gambar `tema/wedding-journey/assets/going-merry-sunset.*`** dengan ilustrasi orisinal berlisensi. Elemen lain di tema (emblem kru, kapal siluet, Log Pose, peta, peti harta, ikon) adalah SVG orisinal.
+Gambar hero kapal (Going Merry), bendera di dalamnya, dan maskot Chopper (`assets/chopper/`) adalah aset dari pemilik proyek dari pemilik proyek yang terinspirasi One Piece (© Eiichiro Oda / Shueisha / Toei Animation). Untuk penjualan komersial, **ganti gambar `tema/wedding-journey/assets/going-merry-sunset.*` dan `assets/chopper/*`** dengan ilustrasi orisinal berlisensi. Elemen lain di tema (emblem kru, kapal siluet, Log Pose, peta, peti harta, ikon) adalah SVG orisinal.

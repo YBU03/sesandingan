@@ -157,6 +157,31 @@ window.invitationData = {
     title: '',
   },
 
+  /**
+   * Aset visual tema. Ganti path di sini untuk memakai gambar lain
+   * (misalnya versi karakter orisinal untuk penjualan komersial).
+   */
+  art: {
+    wanted: {
+      top: 'assets/wanted-top.webp',       // "WANTED" + bingkai foto + "FOREVER & ALWAYS"
+      band: 'assets/wanted-band.webp',     // bagian tengah, memanjang mengikuti isi
+      bottom: 'assets/wanted-bottom.webp', // tepi bawah kertas
+    },
+  },
+
+  /**
+   * Maskot. enabled: false = sembunyikan semua maskot.
+   * Kosongkan salah satu path untuk menyembunyikan pose tertentu.
+   */
+  mascot: {
+    enabled: true,
+    mempelai: 'assets/chopper/chopper-compass.webp',
+    rsvp: 'assets/chopper/chopper-wave.webp',
+    rsvpBubble: 'Ayo konfirmasi kehadiranmu!',
+    gift: 'assets/chopper/chopper-gift.webp',
+    closing: 'assets/chopper/chopper-shy.webp',
+  },
+
   // Tautan "Dibuat dengan Sesandingan" di footer
   credit: {
     show: true,

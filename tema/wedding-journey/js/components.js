@@ -64,11 +64,10 @@
   };
   U.portraitPlaceholder = function () {
     var svg =
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">' +
-      '<rect width="400" height="500" fill="#d9bf8e"/>' +
-      '<rect width="400" height="500" fill="#7a5530" opacity=".12"/>' +
-      '<circle cx="200" cy="200" r="80" fill="#a98458"/>' +
-      '<path d="M60 500c10-120 70-180 140-180s130 60 140 180z" fill="#a98458"/>' +
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 300">' +
+      '<rect width="440" height="300" fill="#ead3a2" opacity=".55"/>' +
+      '<circle cx="220" cy="118" r="54" fill="#b8955f" opacity=".55"/>' +
+      '<path d="M120 300c8-80 50-118 100-118s92 38 100 118z" fill="#b8955f" opacity=".55"/>' +
       '</svg>';
     return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
   };
@@ -99,7 +98,12 @@
       '</header>';
   };
 
-  C.WantedPoster = function (p, role) {
+  /**
+   * Poster Wanted dari 3 potongan gambar (atas, tengah memanjang, bawah).
+   * Gambar atas sudah memuat tulisan "WANTED", bingkai foto, dan
+   * "FOREVER & ALWAYS". Foto & data mempelai diisi sebagai HTML.
+   */
+  C.WantedPoster = function (p, role, art) {
     var parents = [p.father, p.mother].filter(Boolean);
     var parentsHtml = parents.length
       ? U.esc(p.childOrder || '') + '<br><strong>' + parents.map(U.esc).join(' &amp; ') + '</strong>'
@@ -107,21 +111,33 @@
     var photo = p.photo || U.portraitPlaceholder();
     return (
       '<article class="wanted reveal" aria-label="Profil ' + U.esc(role) + '">' +
-        '<p class="wanted-head">WANTED</p>' +
-        '<p class="wanted-sub">Dicari: Teman Hidup Selamanya</p>' +
-        '<figure class="wanted-photo">' +
-          '<img src="' + U.esc(photo) + '" alt="' + (p.photo ? 'Foto ' + U.esc(p.nickname || p.fullName) : 'Placeholder foto ' + U.esc(role)) + '" loading="lazy" width="400" height="500">' +
-        '</figure>' +
-        '<p class="wanted-role">' + U.esc(role) + '</p>' +
-        '<h3 class="wanted-name">' + U.esc(p.fullName) + '</h3>' +
-        (p.nickname ? '<p class="wanted-nick">“' + U.esc(p.nickname) + '”</p>' : '') +
-        '<div class="wanted-bounty"><span>Hadiah</span><strong>Cinta Seumur Hidup</strong></div>' +
-        '<p class="wanted-parents">' + parentsHtml + '</p>' +
-        (p.instagram
-          ? '<a class="wanted-social" href="https://instagram.com/' + U.esc(p.instagram.replace(/^@/, '')) + '" target="_blank" rel="noopener">' + U.icon('instagram') + '@' + U.esc(p.instagram.replace(/^@/, '')) + '</a>'
-          : '') +
+        '<div class="wanted-top">' +
+          '<img class="wanted-paper" src="' + U.esc(art.top) + '" alt="" width="900" height="900" loading="lazy">' +
+          '<figure class="wanted-photo">' +
+            '<img src="' + U.esc(photo) + '" alt="' + (p.photo ? 'Foto ' + U.esc(p.nickname || p.fullName) : 'Placeholder foto ' + U.esc(role)) + '" loading="lazy">' +
+          '</figure>' +
+        '</div>' +
+        '<div class="wanted-band" style="background-image:url(\'' + U.esc(art.band) + '\')">' +
+          '<p class="wanted-role">' + U.esc(role) + '</p>' +
+          '<h3 class="wanted-name">' + U.esc(p.fullName) + '</h3>' +
+          (p.nickname ? '<p class="wanted-nick">“' + U.esc(p.nickname) + '”</p>' : '') +
+          '<p class="wanted-parents">' + parentsHtml + '</p>' +
+          (p.instagram
+            ? '<a class="wanted-social" href="https://instagram.com/' + U.esc(p.instagram.replace(/^@/, '')) + '" target="_blank" rel="noopener">' + U.icon('instagram') + '@' + U.esc(p.instagram.replace(/^@/, '')) + '</a>'
+            : '') +
+        '</div>' +
+        '<img class="wanted-bottom" src="' + U.esc(art.bottom) + '" alt="" width="900" height="90" loading="lazy">' +
       '</article>'
     );
+  };
+
+  /* Maskot (gambar dekoratif) + balon kata opsional */
+  C.Mascot = function (src, cls, bubble) {
+    if (!src) return '';
+    return '<div class="mascot ' + (cls || '') + '">' +
+      '<img src="' + U.esc(src) + '" alt="" aria-hidden="true" loading="lazy" decoding="async">' +
+      (bubble ? '<p class="bubble">' + U.esc(bubble) + '</p>' : '') +
+      '</div>';
   };
 
   C.EventCard = function (ev, tz, tzLabel) {

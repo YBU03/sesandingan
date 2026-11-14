@@ -179,7 +179,10 @@
 
   /* ---------------- D. Wanted posters ---------------- */
   $('#t-mempelai-wrap').innerHTML = C.BoardTitle('Mempelai', 'Kru Baru Telah Ditemukan');
-  $('#postersMount').innerHTML = C.WantedPoster(D.couple.groom, 'Mempelai Pria') + C.WantedPoster(D.couple.bride, 'Mempelai Wanita');
+  var M = D.mascot && D.mascot.enabled ? D.mascot : {};
+  $('#postersMount').innerHTML = C.WantedPoster(D.couple.groom, 'Mempelai Pria', D.art.wanted) +
+    C.WantedPoster(D.couple.bride, 'Mempelai Wanita', D.art.wanted) +
+    C.Mascot(M.mempelai, 'mascot--mempelai reveal');
 
   /* ---------------- E. Acara ---------------- */
   $('#eventsTitle').innerHTML = C.BoardTitle('Detail Acara', 'Arah Log Pose Menunjuk Ke');
@@ -274,7 +277,8 @@
   /* ---------------- I. RSVP ---------------- */
   (function () {
     if (!D.rsvp.enabled) { $('#rsvp').hidden = true; return; }
-    $('#rsvpMount').innerHTML = C.BoardTitle('Konfirmasi Kehadiran', 'Join Our Celebration') + C.RSVPForm(D.rsvp);
+    $('#rsvpMount').innerHTML = C.BoardTitle('Konfirmasi Kehadiran', 'Join Our Celebration') +
+      C.Mascot(M.rsvp, 'mascot--rsvp reveal', M.rsvpBubble) + C.RSVPForm(D.rsvp);
     var form = $('#rsvpForm');
     var store = window.WJStorage.create(D.rsvp, 'wedding-journey');
     var btn = form.querySelector('[type="submit"]');
@@ -364,7 +368,10 @@
     var g = D.gift;
     if (!g.enabled) { $('#hadiah').hidden = true; return; }
     var html = C.BoardTitle('Wedding Gift', 'Treasure Chest') +
-      '<div class="chest reveal" aria-hidden="true"><svg viewBox="0 0 200 150"><use href="#chest"/></svg></div>' +
+      '<div class="gift-hero reveal">' +
+        '<div class="chest" aria-hidden="true"><svg viewBox="0 0 200 150"><use href="#chest"/></svg></div>' +
+        C.Mascot(M.gift, 'mascot--gift') +
+      '</div>' +
       '<p class="gift-intro reveal">' + U.esc(g.intro) + '</p>';
     if (g.accounts && g.accounts.length) {
       html += '<div class="gift-list reveal">' + g.accounts.map(C.GiftCard).join('') + '</div>';
@@ -406,6 +413,13 @@
     var a = e.target.closest('a[aria-disabled="true"]');
     if (a) { e.preventDefault(); toast('Tautan belum tersedia.'); }
   });
+
+  /* ---------------- Maskot penutup ---------------- */
+  if (M.closing) {
+    var cm = $('#closingMascot');
+    cm.className = 'closing-mascot';
+    cm.innerHTML = '<img src="' + U.esc(M.closing) + '" alt="" loading="lazy" decoding="async">';
+  }
 
   /* ---------------- Credit ---------------- */
   if (D.credit && D.credit.show) {
